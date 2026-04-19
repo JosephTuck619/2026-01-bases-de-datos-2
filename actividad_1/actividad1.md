@@ -45,8 +45,8 @@ WHERE BookID IN (
 ```sql
 SELECT Title
 FROM Books
-WHERE BookID IN (SELECT BookID FROM Loans)
-AND BookID NOT IN (SELECT BookID FROM Reservations);
+WHERE BookID IN (SELECT BookID FROM Reservations)
+AND BookID NOT IN (SELECT BookID FROM Loans);
 ```
 ---
 
