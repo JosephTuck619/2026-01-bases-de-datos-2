@@ -1,6 +1,29 @@
-# 📚 Taller SQL – Biblioteca
+# Taller 1 SQL – Biblioteca
 
-Base de datos: db_library
+### Base de datos: db_library
+
+---
+
+## Antes de iniciar: 
+
+### Corrección de error en archivo SQL
+
+
+Al ejecutar el script en XAMPP, se presentó un error de sintaxis (#1064) debido al uso de comillas simples dentro de los títulos:
+
+- `Harry Potter and the Sorcerer's Stone`
+- `Charlotte's Web`
+
+Esto genera conflicto porque SQL usa `'` para delimitar texto.
+
+### Solución
+
+Se eliminaron las comillas internas:
+
+```sql
+'Harry Potter and the Sorcerers Stone'
+'Charlottes Web'
+```
 
 ---
 
