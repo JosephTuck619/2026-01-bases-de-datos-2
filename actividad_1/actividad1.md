@@ -48,6 +48,11 @@ FROM Books
 WHERE BookID IN (SELECT BookID FROM Reservations)
 AND BookID NOT IN (SELECT BookID FROM Loans);
 ```
+
+Sale vacía porque los BookID de ambas tablas (Reservation y Loans) son iguales.
+
+Eso significa que no existe ningún libro que esté reservado y no prestado.
+
 ---
 
 ### 2.2 Libros prestados pero no reservados
@@ -95,6 +100,13 @@ INNER JOIN Books b ON bc.CategoryID = b.CategoryID
 GROUP BY bc.CategoryID, bc.CategoryName
 HAVING COUNT(b.BookID) > 3;
 ```
+Sale vacía porque se validó que cada categoría tiene solo 1 libro.
+
+Entonces ninguna cumple 
+```sql
+COUNT(b.BookID) > 3.
+```
+
 ---
 
 ### 4.2 Usuarios con más de 2 reservas
@@ -106,6 +118,14 @@ INNER JOIN Reservations r ON u.UserID = r.UserID
 GROUP BY u.UserID, u.FirstName, u.LastName
 HAVING COUNT(r.ReservationID) > 2;
 ```
+
+Sale vacía porque cada usuario tiene solo 1 reserva.
+
+Entonces nadie cumple
+```sql 
+COUNT(r.ReservationID) > 2. 
+```
+
 ---
 
 
