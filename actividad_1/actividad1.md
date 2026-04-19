@@ -1,5 +1,4 @@
 # Taller 1 SQL – Biblioteca
-# Taller 1 SQL – Biblioteca
 
 ### Base de datos: db_library
 
