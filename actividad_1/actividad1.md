@@ -25,6 +25,8 @@ WHERE UserID IN (
     )
 );
 ```
+![alt text](1.1.png)
+
 ---
 
 ### 1.2 Libros que están prestados
@@ -36,6 +38,8 @@ WHERE BookID IN (
     SELECT BookID FROM Loans
 );
 ```
+![alt text](1.2.png)
+
 --- 
 
 ## 🔹 2. OPERADORES DE CONJUNTO
@@ -51,7 +55,7 @@ AND BookID NOT IN (SELECT BookID FROM Loans);
 
 Sale vacía porque los BookID de ambas tablas (Reservation y Loans) son iguales.
 
-Eso significa que no existe ningún libro que esté reservado y no prestado.
+Eso significa que no existe ningún libro que esté prestado y no reservado.
 
 ---
 
@@ -62,6 +66,11 @@ FROM Books
 WHERE BookID IN (SELECT BookID FROM Loans)
 AND BookID NOT IN (SELECT BookID FROM Reservations);
 ```
+
+Igual que la anterior, pero a la inversa: sale vacía porque los BookID de ambas tablas (Reservation y Loans) son iguales.
+
+Eso significa que no existe ningún libro que esté reservado y no prestado.
+
 ---
 
 ## 🔹 3. EXPRESIONES CONDICIONALES
@@ -75,6 +84,8 @@ SELECT Title,
        END AS Estado
 FROM Books;
 ```
+![alt text](3.1.png)
+
 ---
 
 ### 3.2 Estado de usuarios
@@ -87,6 +98,9 @@ SELECT FirstName, LastName,
        END AS EstadoUsuario
 FROM Users;
 ```
+
+![alt text](3.2.png)
+
 ---
 
 ## 🔹 4. ANÁLISIS AGREGADO CON GROUP BY Y HAVING
@@ -139,6 +153,9 @@ FROM Users u
 INNER JOIN Loans l ON u.UserID = l.UserID
 INNER JOIN Books b ON l.BookID = b.BookID;
 ```
+
+![alt text](5.1.png)
+
 ---
 
 ### 5.2 Usuarios y libros reservados
@@ -149,6 +166,9 @@ FROM Users u
 INNER JOIN Reservations r ON u.UserID = r.UserID
 INNER JOIN Books b ON r.BookID = b.BookID;
 ```
+
+![alt text](5.2.png)
+
 ---
 
 
@@ -162,6 +182,9 @@ FROM Books b
 LEFT JOIN Reservations r ON b.BookID = r.BookID
 LEFT JOIN Users u ON r.UserID = u.UserID;
 ```
+
+![alt text](6.1.png)
+
 ---
 
 ### 6.2 Usuarios con libros prestados
@@ -172,6 +195,9 @@ FROM Users u
 LEFT JOIN Loans l ON u.UserID = l.UserID
 LEFT JOIN Books b ON l.BookID = b.BookID;
 ```
+
+![alt text](6.2.png)
+
 ---
 
 
@@ -185,6 +211,9 @@ FROM Reservations r
 RIGHT JOIN Books b ON r.BookID = b.BookID
 LEFT JOIN Users u ON r.UserID = u.UserID;
 ```
+
+![alt text](7.1.png)
+
 ---
 
 ### 7.2 Usuarios con préstamos
@@ -195,6 +224,9 @@ FROM Loans l
 RIGHT JOIN Users u ON l.UserID = u.UserID
 LEFT JOIN Books b ON l.BookID = b.BookID;
 ```
+
+![alt text](7.2.png)
+
 ---
 
 ## 🔹 8. FUNCIONES ESPECIALIZADAS
@@ -204,6 +236,9 @@ LEFT JOIN Books b ON l.BookID = b.BookID;
 ```sql
 SELECT UPPER(Title) FROM Books;
 ```
+
+![alt text](8.1.png)
+
 ---
 
 ### 8.2 Nombre completo
@@ -211,27 +246,34 @@ SELECT UPPER(Title) FROM Books;
 ```sql
 SELECT CONCAT(FirstName, ' ', LastName) FROM Users;
 ```
+
+![alt text](8.2.png)
+
 ---
 
 ## 🔹 9. FUNCIONES DE FECHA
 
 ### 9.1 Días desde la reserva
 
-
 ```sql
 SELECT ReservationID,
        DATEDIFF(CURDATE(), ReservationDate)
 FROM Reservations;
 ```
+
+![alt text](9.1.png)
+
 ---
 
 ### 9.2 Préstamos pendientes
-
 
 ```sql
 SELECT * FROM Loans
 WHERE ReturnDate IS NULL;
 ```
+
+![alt text](9.2.png)
+
 ---
 
 ## 🔹 10. FUNCIONES DE AGREGACIÓN
@@ -244,6 +286,9 @@ FROM BookCategories bc
 JOIN Books b ON bc.CategoryID = b.CategoryID
 GROUP BY bc.CategoryName;
 ```
+
+![alt text](10.1.png)
+
 ---
 
 ### 10.2 Préstamos por usuario
@@ -254,6 +299,9 @@ FROM Users u
 LEFT JOIN Loans l ON u.UserID = l.UserID
 GROUP BY u.UserID;
 ```
+
+![alt text](10.2.png)
+
 ---
 
 
